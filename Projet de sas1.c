@@ -8,22 +8,21 @@ int choix, n,i,j;
 int plusieur ;
 int found1=0;
 int conteur=0;
-typedef enum
-{
-    PHYSIQUE,
-    CHIMIE,
-    MATH,
-    GEOLOGIE
-} Department;
+int nb;
+char PHYSIQUE;
+char CHIMIE;
+char MATH ;
+char GEOLOGIE;
+int NEDP = 0, NEDC = 0, NEDM = 0, NEDG = 0;
+
+
 typedef struct
 {
     int Numero_unique;
     char Nom[50];
     char Prenom[30];
     char Date_de_naissance[30];
-    Department Departement;
-    char Rechercher_depart;
-
+    char  Departement[30];
     float Note_generale;
 } GESTION;
 GESTION gestion [100];
@@ -31,7 +30,7 @@ GESTION temp ;
 GESTION seuil;
 GESTION temp1;
 char nomcherche[20];
-char Departement;
+char Departement[30];
 char Rechercher_depart [20];
 float found3;
 
@@ -57,22 +56,22 @@ void ajouter ( GESTION gestion[] )
     printf("\n");
     do
     {
-        printf("Veuillez saisir 'p' pour le Département de PHYSIQUE, 'c' pour CHIMIE, 'm' pour MATH, 'g' pour Géologie: ");
-        scanf(" %c", &Departement);
+        printf("Veuillez saisir '1' pour le Département de PHYSIQUE, '2' pour CHIMIE, '3' pour MATH, '4' pour Geologie: ");
+        scanf(" %d", &nb);
 
-        switch (Departement)
+        switch (nb)
         {
-        case 'p':
-            gestion[count].Departement = PHYSIQUE;
+        case '1':
+            strcpy (gestion[count].Departement, "PHYSIQUE");
             break;
-        case 'c':
-            gestion[count].Departement = CHIMIE;
+        case '2':
+            strcpy(gestion[count].Departement , "CHIMIE");
             break;
-        case 'm':
-            gestion[count].Departement = MATH;
+        case '3':
+            strcpy(gestion[count].Departement , "MATH");
             break;
-        case 'g':
-            gestion[count].Departement = GEOLOGIE;
+        case '4':
+            strcpy (gestion[count].Departement ,"GEOLOGIE");
             break;
         default:
             printf("Département invalide. Veuillez réessayer.\n");
@@ -95,23 +94,7 @@ void aficher ()
         printf("#   ==>Le nom                    #%15s            #\n",gestion[i].Nom );
         printf("#   ==>Le prenom                 #%15s            #\n",gestion[i].Prenom );
         printf("#   ==>La date naissance         #%15s            #\n",gestion[i].Date_de_naissance);
-        switch (gestion[i].Departement)
-        {
-        case PHYSIQUE:
-            printf("    ==>  Departement             #           PHYSIQUE        #\n");
-            break;
-        case CHIMIE:
-            printf("    ==>   Departement            #            CHIMIE        #\n");
-            break;
-        case MATH:
-            printf("    ==>   Departement            #             MATH          #\n");
-            break;
-        case GEOLOGIE:
-            printf("Departement                      #             GEOLOGIE       #\n");
-            break;
-        default:
-            printf("Département inconnu\n");
-        }
+        printf("#   ==>Departement               #%15s            #\n",gestion[i].Departement);
         printf("#   ==>La Note generale:         #%15.2f            #\n",gestion[i].Note_generale );
         printf("##############################################################\n");
 
@@ -191,34 +174,15 @@ void Rechercher ()
 void Rechercher_departement ()
 {
 
-    char Rechercher_depart;
-
-    printf("Veuillez entrer un département spécifique 'p', 'c', 'm' ou 'g': \n");
-    scanf(" %c", &Rechercher_depart);
-
-    switch (Rechercher_depart)
-    {
-    case 'p':
-        Rechercher_depart = PHYSIQUE;
-        break;
-    case 'c':
-        Rechercher_depart = CHIMIE;
-        break;
-    case 'm':
-        Rechercher_depart = MATH;
-        break;
-    case 'g':
-        Rechercher_depart = GEOLOGIE;
-        break;
-    default:
-        printf("Département invalide. Veuillez entrer 'p', 'c', 'm' ou 'g'.\n");
-        return;
-    }
-
+    char Rechercher_depart[40];
+do{
+     printf("Veuillez entrer un département spécifique 'PHYSIQUE', 'CHIMIE', 'MATH' ou 'GEOLOGIE': \n");
+    scanf(" %s", Rechercher_depart);
+}while (strcmp(Rechercher_depart, "PHYSIQUE") != 0 && strcmp(Rechercher_depart, "CHIMIE") != 0 && strcmp(Rechercher_depart, "MATH") != 0 && strcmp(Rechercher_depart, "GEOLOGIE") != 0);
     int found = 0;
     for (i = 0; i < count; i++)
     {
-        if (gestion[i].Departement == Rechercher_depart)
+        if (strcmp(gestion[i].Departement,Rechercher_depart )==0)
         {
             printf("##############################################################\n");
             printf("#                        L'étudiant %d                        #\n", i + 1);
@@ -227,9 +191,6 @@ void Rechercher_departement ()
             printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
             printf("#   ==> Le prénom                 #%15s            #\n", gestion[i].Prenom);
             printf("#   ==> La date de naissance      #%15s            #\n", gestion[i].Date_de_naissance);
-            printf("#   ==> Département               #%15s            #\n", (gestion[i].Departement == PHYSIQUE ? "PHYSIQUE" :
-                    gestion[i].Departement == CHIMIE ? "CHIMIE" :
-                    gestion[i].Departement == MATH ? "MATH" : "GEOLOGIE"));
             printf("#   ==> La Note générale :        #%15.2f            #\n", gestion[i].Note_generale);
             printf("##############################################################\n");
             found = 1;
@@ -244,25 +205,18 @@ void Rechercher_departement ()
 
 void nbr_dans_departement()
 {
-    int NEDP = 0, NEDC = 0, NEDM = 0, NEDG = 0;
     for (i = 0; i < count; i++)
     {
-        switch (gestion[i].Departement)
-        {
-        case PHYSIQUE:
+        if (strcmp(gestion[i].Departement,"PHYSIQUE" )==0)
             NEDP++;
-            break;
-        case CHIMIE:
+           if (strcmp(gestion[i].Departement,"CHIMIE" )==0)
             NEDC++;
-            break;
-        case MATH:
+           if (strcmp(gestion[i].Departement,"MATH" )==0)
             NEDM++;
-            break;
-        case GEOLOGIE:
+            if (strcmp(gestion[i].Departement,"GEOLOGIE")==0)
             NEDG++;
-            break;
         }
-    }
+
     printf("Nombre d'étudiants dans chaque département:\n");
     printf("Physique: %d\n", NEDP);
     printf("Chimie: %d\n", NEDC);
@@ -335,49 +289,58 @@ int main ()
                 // Étudiant 1
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "RADI", .Prenom = "Marie", .Date_de_naissance = "15/03/2001", .Note_generale = 14.5, .Departement = PHYSIQUE
+                    .Numero_unique = time(NULL), .Nom = "RADI", .Prenom = "Marie", .Date_de_naissance = "15/03/2001", .Note_generale = 14.5, .Departement = "PHYSIQUE"
                 };
 
                 // Étudiant 2
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "SAMI", .Prenom = "MERYEM", .Date_de_naissance = "22/11/1999", .Note_generale = 12.0, .Departement = CHIMIE
+                    .Numero_unique = time(NULL), .Nom = "SAMI", .Prenom = "MERYEM", .Date_de_naissance = "22/11/1999", .Note_generale = 12.0, .Departement = "CHIMIE"
                 };
 
                 // Étudiant 3
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "KARI", .Prenom = "OUSSAMA", .Date_de_naissance = "05/07/2000", .Note_generale = 19.5, .Departement = MATH
+                    .Numero_unique = time(NULL), .Nom = "KARI", .Prenom = "OUSSAMA", .Date_de_naissance = "05/07/2000", .Note_generale = 19.5, .Departement = "MATH"
                 };
 
                 // Étudiant 4
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "TAKI", .Prenom = "ALI", .Date_de_naissance = "30/09/2002", .Note_generale = 11.5, .Departement = GEOLOGIE
+                    .Numero_unique = time(NULL), .Nom = "TAKI", .Prenom = "ALI", .Date_de_naissance = "30/09/2002", .Note_generale = 11.5, .Departement = "GEOLOGIE"
                 };
 
                 // Étudiant 5
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "DAMI", .Prenom = "AHMED", .Date_de_naissance = "12/12/2001", .Note_generale = 19.0, .Departement = PHYSIQUE
+                    .Numero_unique = time(NULL), .Nom = "DAMI", .Prenom = "AHMED", .Date_de_naissance = "12/12/2001", .Note_generale = 19.0, .Departement = "PHYSIQUE"
                 };
 
                 // Étudiant 6
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "SAJI", .Prenom = "SAMIR", .Date_de_naissance = "17/02/2000", .Note_generale = 13.0, .Departement = CHIMIE
+                    .Numero_unique = time(NULL), .Nom = "SAJI", .Prenom = "SAMIR", .Date_de_naissance = "17/02/2000", .Note_generale = 13.0, .Departement = "CHIMIE"
                 };
 
                 // Étudiant 7
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "RAZI", .Prenom = "HAMZA", .Date_de_naissance = "23/04/2002", .Note_generale = 18.0, .Departement = MATH
+                    .Numero_unique = time(NULL), .Nom = "RAZI", .Prenom = "HAMZA", .Date_de_naissance = "20/04/2002", .Note_generale = 9.5, .Departement = "MATH"
                 };
 
                 // Étudiant 8
+    gestion[count++] = (GESTION){
+                    .Numero_unique = time(NULL), .Nom = "DARI", .Prenom = "AMIR", .Date_de_naissance = "18/08/1999", .Note_generale = 13.75, .Departement = "GEOLOGIE"
+                };
+                // Étudiant 9
                 gestion[count++] = (GESTION)
                 {
-                    .Numero_unique = time(NULL), .Nom = "PARI", .Prenom = "REDOUAN", .Date_de_naissance = "08/08/1999", .Note_generale = 10.0, .Departement = GEOLOGIE
+                    .Numero_unique = time(NULL), .Nom = "MAZI", .Prenom = "SAID", .Date_de_naissance = "21/04/2000", .Note_generale = 18.0, .Departement = "MATH"
+                };
+
+                // Étudiant 10
+    gestion[count++] = (GESTION){
+                    .Numero_unique = time(NULL), .Nom = "YARI", .Prenom = "MOHAMED", .Date_de_naissance = "27/08/1989", .Note_generale = 10.0, .Departement = "PHYSIQUE"
                 };
 
                 break;
@@ -477,10 +440,27 @@ int main ()
                     printf("Aucun étudiant n'a une note générale supérieure à %.2f.\n", seuil);
 
                 break;
-                            case 'd':
-                                Tri_note();
+            case 'd':
+                Tri_note();
+                for(i=count-1; i>count-4; i--)
+                {
+                    printf("##############################################################\n");
+                    printf("#                        L'étudiant %d                        #\n", i + 1);
+                    printf("##############################################################\n");
+                    printf("#   ==> Numéro unique :           #%15d            #\n", gestion[i].Numero_unique);
+                    printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
+                    printf("#   ==> Le prénom                 #%15s            #\n", gestion[i].Prenom);
+                    printf("#   ==> La date de naissance      #%15s            #\n", gestion[i].Date_de_naissance);
+                    printf("#   ==> Département               #%15s            #\n", (gestion[i].Departement == PHYSIQUE ? "PHYSIQUE" :
+                            gestion[i].Departement == CHIMIE ? "CHIMIE" :
+                            gestion[i].Departement == MATH ? "MATH" : "GEOLOGIE"));
+                    printf("#   ==> La Note générale :        #%15.2f            #\n", gestion[i].Note_generale);
+                    printf("##############################################################\n");
+                }
+                break;
+            case 'e':
 
-                                break;
+                break;
 
             }
             break;
