@@ -170,17 +170,18 @@ void Rechercher ()
     for (i=0; i<count; i++)
     {
         if (strcmp(gestion[i].Nom,nomcherche)==0)
-        {printf("##############################################################\n");
-        printf("#                        L'etudiant %d                        #\n",i+1);
-        printf("##############################################################\n");
-        printf("#   ==>Numero unique :           #%15d            #\n",gestion[i].Numero_unique);
-        printf("#   ==>Le nom                    #%15s            #\n",gestion[i].Nom );
-        printf("#   ==>Le prenom                 #%15s            #\n",gestion[i].Prenom );
-        printf("#   ==>La date naissance         #%15s            #\n",gestion[i].Date_de_naissance);
-        printf("#   ==>Departement               #%15s            #\n",gestion[i].Departement);
-        printf("#   ==>La Note generale:         #%15.2f            #\n",gestion[i].Note_generale );
-        printf("##############################################################\n");
-       found1==1;
+        {
+            printf("##############################################################\n");
+            printf("#                        L'etudiant %d                        #\n",i+1);
+            printf("##############################################################\n");
+            printf("#   ==>Numero unique :           #%15d            #\n",gestion[i].Numero_unique);
+            printf("#   ==>Le nom                    #%15s            #\n",gestion[i].Nom );
+            printf("#   ==>Le prenom                 #%15s            #\n",gestion[i].Prenom );
+            printf("#   ==>La date naissance         #%15s            #\n",gestion[i].Date_de_naissance);
+            printf("#   ==>Departement               #%15s            #\n",gestion[i].Departement);
+            printf("#   ==>La Note generale:         #%15.2f            #\n",gestion[i].Note_generale );
+            printf("##############################################################\n");
+            found1==1;
         }
     }
     if (found1==0)
@@ -240,7 +241,7 @@ void nbr_dans_departement()
     printf("Physique: %d\n", NEDP);
     printf("Chimie: %d\n", NEDC);
     printf("Math: %d\n", NEDM);
-    printf("Géologie: %d\n", NEDG);
+    printf("Geologie: %d\n", NEDG);
 }
 void tri_reussite ()
 {
@@ -252,12 +253,12 @@ void tri_reussite ()
             printf("##############################################################\n");
             printf("#                        L'étudiant %d                        #\n", i + 1);
             printf("##############################################################\n");
-            printf("#   ==> Numéro unique :           #%15d            #\n", gestion[i].Numero_unique);
+            printf("#   ==> Numero unique :           #%15d            #\n", gestion[i].Numero_unique);
             printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
-            printf("#   ==> Le prénom                 #%15s            #\n", gestion[i].Prenom);
-            printf("#   ==>Departement               #%15s            #\n",gestion[i].Departement);
+            printf("#   ==> Le prenom                 #%15s            #\n", gestion[i].Prenom);
+            printf("#   ==> Departement               #%15s            #\n",gestion[i].Departement);
             printf("#   ==> La date de naissance      #%15s            #\n", gestion[i].Date_de_naissance);
-            printf("#   ==> La Note générale :        #%15.2f            #\n", gestion[i].Note_generale);
+            printf("#   ==> La Note generale :        #%15.2f            #\n", gestion[i].Note_generale);
             printf("##############################################################\n");
         }
     }
@@ -272,17 +273,17 @@ int main ()
         printf("#                 Projet : Gestion des etudiants dans une universite            #\n");
         printf("#################################################################################\n");
         printf("#                                                                               #\n");
-        printf("#     1 ==> Ajouter un étudiant .                                               #\n");
+        printf("#     1 ==> Ajouter un etudiant .                                               #\n");
         printf("#                                                                               #\n");
-        printf("#     2 ==> Afficher les détails d'un étudiant .                                #\n");
+        printf("#     2 ==> Afficher les details d'un etudiant .                                #\n");
         printf("#                                                                               #\n");
-        printf("#     3 ==> Trier un étudiant.                                                  #\n");
+        printf("#     3 ==> Trier un etudiant.                                                  #\n");
         printf("#                                                                               #\n");
-        printf("#     4 ==> Rechercher un étudiant  .                                           #\n");
+        printf("#     4 ==> Rechercher un etudiant  .                                           #\n");
         printf("#                                                                               #\n");
         printf("#     5 ==> Statistiques  .                                                     #\n");
         printf("#                                                                               #\n");
-        printf("#     6 ==> Modifier ou supprimer les informations d'un étudiant .              #\n");
+        printf("#     6 ==> Modifier ou supprimer les informations d'un etudiant .              #\n");
         printf("#                                                                               #\n");
         printf("#     0 ==> fermer le programme .                                               #\n");
         printf("#                                                                               #\n");
@@ -321,68 +322,33 @@ int main ()
             case 3 :
 
                 // Étudiant 1
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique =1454870, .Nom = "RADI", .Prenom = "Marie", .Date_de_naissance = "15/03/2001", .Note_generale = 14.5, .Departement = "PHYSIQUE"
-                };
+                gestion[count++] = (GESTION){1454870,  "RADI", "Marie",  "15/03/2001", 14.5, "PHYSIQUE"};
 
                 // Étudiant 2
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique =1454871, .Nom = "SAMI", .Prenom = "MERYEM", .Date_de_naissance = "22/11/1999", .Note_generale = 12.0, .Departement = "CHIMIE"
-                };
+                gestion[count++] = (GESTION){ 1454871,  "SAMI",  "MERYEM",  "22/11/1999", 12.0,  "CHIMIE" };
 
                 // Étudiant 3
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454872, .Nom = "KARI", .Prenom = "OUSSAMA", .Date_de_naissance = "05/07/2000", .Note_generale = 19.5, .Departement = "MATH"
-                };
+                gestion[count++] = (GESTION){1454872,  "KARI",  "OUSSAMA",  "05/07/2000",  19.5,  "MATH"};
 
                 // Étudiant 4
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454873, .Nom = "TAKI", .Prenom = "ALI", .Date_de_naissance = "30/09/2002", .Note_generale = 11.5, .Departement = "GEOLOGIE"
-                };
+                gestion[count++] = (GESTION){ 1454873,  "TAKI",  "ALI",  "30/09/2002",  11.5,  "GEOLOGIE" };
 
                 // Étudiant 5
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454874, .Nom = "DAMI", .Prenom = "AHMED", .Date_de_naissance = "12/12/2001", .Note_generale = 19.0, .Departement = "PHYSIQUE"
-                };
+                gestion[count++] = (GESTION) {1454874,  "DAMI", "AHMED",  "12/12/2001",  19.0,  "PHYSIQUE" };
 
                 // Étudiant 6
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454875, .Nom = "SAJI", .Prenom = "SAMIR", .Date_de_naissance = "17/02/2000", .Note_generale = 13.0, .Departement = "CHIMIE"
-                };
+                gestion[count++] = (GESTION){ 1454875, "SAJI", "SAMIR",  "17/02/2000",  13.0, "CHIMIE" };
 
                 // Étudiant 7
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454876, .Nom = "TAKI", .Prenom = "HAMZA", .Date_de_naissance = "20/04/2002", .Note_generale = 9.5, .Departement = "MATH"
-                };
+                gestion[count++] = (GESTION){1454876,  "TAKI",  "HAMZA",  "20/04/2002",  9.5,  "MATH"};
 
                 // Étudiant 8
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454877,
-                    .Nom = "DARI",
-                    .Prenom = "AMIR",
-                    .Date_de_naissance = "18/08/1999",
-                    .Note_generale = 13.75,
-                    .Departement = "GEOLOGIE"
-                };
+                gestion[count++] = (GESTION){ 1454877,"DARI", "AMIR", "18/08/1999",13.75,"GEOLOGIE"};
                 // Étudiant 9
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454878, .Nom = "MAZI", .Prenom = "SAID", .Date_de_naissance = "21/04/2000", .Note_generale = 18.0, .Departement = "MATH"
-                };
+                gestion[count++] = (GESTION){1454878,  "MAZI",  "SAID",  "21/04/2000",  18.0, "MATH" };
 
                 // Étudiant 10
-                gestion[count++] = (GESTION)
-                {
-                    .Numero_unique = 1454879, .Nom = "YARI", .Prenom = "MOHAMED", .Date_de_naissance = "27/08/1989", .Note_generale = 10.0, .Departement = "PHYSIQUE"
-                };
+                gestion[count++] = (GESTION){1454879, "YARI", "MOHAMED",  "27/08/1989",  10.0,  "PHYSIQUE"};
 
                 break;
             }
@@ -415,7 +381,7 @@ int main ()
             break;
         case 4 :
             printf ("veuillez entrer votre choix : \n");
-            printf (" 1 ==> Rechercher un étudiant par son nom . \n") ;
+            printf (" 1 ==> Rechercher un etudiant par son nom . \n") ;
             printf (" 2 ==> Afficher la liste des etudiants inscrits dans un departement specifique. \n") ;
             scanf (" %d",&n);
             switch ( n )
@@ -442,7 +408,7 @@ int main ()
             switch ( n )
             {
             case 1:
-                printf(" le nombre total d'étudiants inscrits est %d .\n",count);
+                printf(" le nombre total d'etudiants inscrits est %d .\n",count);
                 break;
             case 2:
                 nbr_dans_departement();
@@ -460,26 +426,26 @@ int main ()
                         {
 
                             printf("##############################################################\n");
-                            printf("#       Les étudiants avec une note générale supérieure à %.2f         #\n", seuil);
+                            printf("#       Les etudiants avec une note generale supérieure à %.2f         #\n", seuil);
                             printf("##############################################################\n");
                             found = 1;
                         }
 
                         printf("##############################################################\n");
-                        printf("#                        L'étudiant %d                        #\n", i + 1);
+                        printf("#                        L'etudiant %d                        #\n", i + 1);
                         printf("##############################################################\n");
-                        printf("#   ==> Numéro unique :           #%15d            #\n", gestion[i].Numero_unique);
+                        printf("#   ==> Numero unique :           #%15d            #\n", gestion[i].Numero_unique);
                         printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
                         printf("#   ==> Le prénom                 #%15s            #\n", gestion[i].Prenom);
                         printf("#   ==> La date de naissance      #%15s            #\n", gestion[i].Date_de_naissance);
                         printf("#   ==>Departement               #%15s            #\n",gestion[i].Departement);
-                        printf("#   ==> La Note générale :        #%15.2f            #\n", gestion[i].Note_generale);
+                        printf("#   ==> La Note generale :        #%15.2f            #\n", gestion[i].Note_generale);
                         printf("##############################################################\n");
                     }
                 }
 
                 if (found3==0)
-                    printf("Aucun étudiant n'a une note générale supérieure à %.2f.\n", seuil);
+                    printf("Aucun etudiant n'a une note generale superieure à %.2f.\n", seuil);
 
                 break;
             case 4 :
@@ -487,14 +453,14 @@ int main ()
                 for(i=count-1; i>count-4; i--)
                 {
                     printf("##############################################################\n");
-                    printf("#                        L'étudiant %d                        #\n", i + 1);
+                    printf("#                        L'etudiant %d                        #\n", i + 1);
                     printf("##############################################################\n");
-                    printf("#   ==> Numéro unique :           #%15d            #\n", gestion[i].Numero_unique);
+                    printf("#   ==> Numero unique :           #%15d            #\n", gestion[i].Numero_unique);
                     printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
-                    printf("#   ==> Le prénom                 #%15s            #\n", gestion[i].Prenom);
+                    printf("#   ==> Le prenom                 #%15s            #\n", gestion[i].Prenom);
                     printf("#   ==> La date de naissance      #%15s            #\n", gestion[i].Date_de_naissance);
-                    printf("#   ==>Departement               #%15s            #\n",gestion[i].Departement);
-                    printf("#   ==> La Note générale :        #%15.2f            #\n", gestion[i].Note_generale);
+                    printf("#   ==> Departement               #%15s            #\n",gestion[i].Departement);
+                    printf("#   ==> La Note generale :        #%15.2f            #\n", gestion[i].Note_generale);
                     printf("##############################################################\n");
                 }
                 break;
@@ -523,7 +489,7 @@ int main ()
                     }
                 }
                 printf("##############################################################\n");
-                printf("#             Le nombre d'étudiants ayant réussi             #\n");
+                printf("#             Le nombre d'etudiants ayant réussi             #\n");
                 printf("##############################################################\n");
                 printf("#                                                            #\n");
                 printf("#   ==> Le nombre  dans departement de PHYSIQUE :   #   %d    #\n", NEVP);
@@ -596,7 +562,7 @@ int main ()
                 }
                 else
                 {
-                    printf("#   ==> Aucun étudiant dans l'université pour calculer la moyenne générale. #\n");
+                    printf("#   ==> Aucun etudiant dans l'université pour calculer la moyenne generale. #\n");
                 }
 
                 printf("#                                                            #\n");
@@ -652,7 +618,7 @@ int main ()
                                 strcpy (gestion[count].Departement,"GEOLOGIE");
                                 break;
                             default:
-                                printf("Département invalide. Veuillez reessayer.\n");
+                                printf("Departement invalide. Veuillez reessayer.\n");
                             }
                         }
                         while ( nb!= 1 && nb != 2 && nb != 3 && nb != 4);
