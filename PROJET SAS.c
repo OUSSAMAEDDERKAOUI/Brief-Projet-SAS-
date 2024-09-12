@@ -21,6 +21,8 @@ int NEVP = 0, NEVC = 0, NEVM = 0, NEVG = 0;
 float  MGDP = 0,MGDC = 0,MGDM =0,MGDG =0, MGUE =0;
 int num_supp;
 
+int etajouter = 0;
+
 int CP=0,CC =0,CM=0,CG=0;
 typedef struct
 {
@@ -49,18 +51,27 @@ void ajouter ( GESTION gestion[] )
     int num_trouve=0;
 
     printf("\n");
-    printf (" numero unique         ===>") ;
 
-    scanf ("%d",&num_tmp);
+    while (1) {
+ debut:
+        printf (" numero unique         ===>") ;
+      if (scanf ("%d",&num_tmp) != 1) {
+        printf("Erreur! entrer un nombre entier \n");
+        scanf("%*s");
+        continue;
+      }
+      break;
+    }
+
 
     for(int i=0 ; i< count ; i++)
     {
 
         if(gestion[i].Numero_unique==num_tmp)
         {
-            printf("cette numero deja exist");
+            printf("cette numero deja exist\n");
 
-            return;
+            goto debut ;
         }
     }
     gestion[count].Numero_unique=num_tmp;
@@ -111,7 +122,7 @@ void aficher ()
     for (i=0; i<count; i++)
     {
         printf("##############################################################\n");
-        printf("#                        L'etudiant %d                        #\n",i+1);
+        printf("#                        L'etudiant                          #\n");
         printf("##############################################################\n");
         printf("#   ==>Numero unique :           #%15d            #\n",gestion[i].Numero_unique);
         printf("#   ==>Le nom                    #%15s            #\n",gestion[i].Nom );
@@ -172,7 +183,7 @@ void Rechercher ()
         if (strcmp(gestion[i].Nom,nomcherche)==0)
         {
             printf("##############################################################\n");
-            printf("#                        L'etudiant %d                        #\n",i+1);
+            printf("#                        L'etudiant                           #\n");
             printf("##############################################################\n");
             printf("#   ==>Numero unique :           #%15d            #\n",gestion[i].Numero_unique);
             printf("#   ==>Le nom                    #%15s            #\n",gestion[i].Nom );
@@ -204,7 +215,7 @@ void Rechercher_departement ()
         if (strcmp(gestion[i].Departement,Rechercher_depart )==0)
         {
             printf("##############################################################\n");
-            printf("#                        L'étudiant %d                        #\n", i + 1);
+            printf("#                        L'étudiant                          #\n");
             printf("##############################################################\n");
             printf("#   ==> Numéro unique :           #%15d            #\n", gestion[i].Numero_unique);
             printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
@@ -251,7 +262,7 @@ void tri_reussite ()
         if(gestion[i].Note_generale>=10)
         {
             printf("##############################################################\n");
-            printf("#                        L'étudiant %d                        #\n", i + 1);
+            printf("#                        L'étudiant                           #\n");
             printf("##############################################################\n");
             printf("#   ==> Numero unique :           #%15d            #\n", gestion[i].Numero_unique);
             printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
@@ -320,35 +331,42 @@ int main ()
                 }
                 break;
             case 3 :
+                if (etajouter == 0) {
+                    // Étudiant 1
+                    gestion[count++] = (GESTION){1454870,  "RADI", "Marie",  "15/03/2001", "PHYSIQUE", 14.5 };
 
-                // Étudiant 1
-                gestion[count++] = (GESTION){1454870,  "RADI", "Marie",  "15/03/2001", 14.5, "PHYSIQUE"};
+                    // Étudiant 2
+                    gestion[count++] = (GESTION){ 1454871,  "SAMI",  "MERYEM",  "22/11/1999", "CHIMIE",12.0   };
 
-                // Étudiant 2
-                gestion[count++] = (GESTION){ 1454871,  "SAMI",  "MERYEM",  "22/11/1999", 12.0,  "CHIMIE" };
+                    // Étudiant 3
+                    gestion[count++] = (GESTION){1454872,  "KARI",  "OUSSAMA",  "05/07/2000", "MATH" ,19.5  };
 
-                // Étudiant 3
-                gestion[count++] = (GESTION){1454872,  "KARI",  "OUSSAMA",  "05/07/2000",  19.5,  "MATH"};
+                    // Étudiant 4
+                    gestion[count++] = (GESTION){ 1454873,  "TAKI",  "ALI",  "30/09/2002",   "GEOLOGIE",11.5 };
 
-                // Étudiant 4
-                gestion[count++] = (GESTION){ 1454873,  "TAKI",  "ALI",  "30/09/2002",  11.5,  "GEOLOGIE" };
+                    // Étudiant 5
+                    gestion[count++] = (GESTION) {1454874,  "DAMI", "AHMED",  "12/12/2001",  "PHYSIQUE" , 19.0 };
 
-                // Étudiant 5
-                gestion[count++] = (GESTION) {1454874,  "DAMI", "AHMED",  "12/12/2001",  19.0,  "PHYSIQUE" };
+                    // Étudiant 6
+                    gestion[count++] = (GESTION){ 1454875, "SAJI", "SAMIR",  "17/02/2000", "CHIMIE", 13.0  };
 
-                // Étudiant 6
-                gestion[count++] = (GESTION){ 1454875, "SAJI", "SAMIR",  "17/02/2000",  13.0, "CHIMIE" };
+                    // Étudiant 7
+                    gestion[count++] = (GESTION){1454876,  "TAKI",  "HAMZA",  "20/04/2002",  "MATH" ,9.5};
 
-                // Étudiant 7
-                gestion[count++] = (GESTION){1454876,  "TAKI",  "HAMZA",  "20/04/2002",  9.5,  "MATH"};
+                    // Étudiant 8
+                    gestion[count++] = (GESTION){ 1454877,"DARI", "AMIR", "18/08/1999","GEOLOGIE",13.75};
+                    // Étudiant 9
+                    gestion[count++] = (GESTION){1454878,  "MAZI",  "SAID",  "21/04/2000", "MATH" ,  18.0 };
 
-                // Étudiant 8
-                gestion[count++] = (GESTION){ 1454877,"DARI", "AMIR", "18/08/1999",13.75,"GEOLOGIE"};
-                // Étudiant 9
-                gestion[count++] = (GESTION){1454878,  "MAZI",  "SAID",  "21/04/2000",  18.0, "MATH" };
+                    // Étudiant 10
+                    gestion[count++] = (GESTION){1454879, "YARI", "MOHAMED",  "27/08/1989",  "PHYSIQUE",  10.0};
 
-                // Étudiant 10
-                gestion[count++] = (GESTION){1454879, "YARI", "MOHAMED",  "27/08/1989",  10.0,  "PHYSIQUE"};
+                    etajouter = 1;
+
+
+                } else {
+                    printf("\nLes etudiants sont deja ajouter\n");
+                }
 
                 break;
             }
@@ -398,9 +416,9 @@ int main ()
             printf ("veuillez entrer votre choix : \n");
             printf (" 1 ==> Afficher le nombre total d'etudiants inscrits. \n") ;
             printf (" 2 ==> Afficher le nombre d'etudiants dans chaque departement. \n") ;
-            printf (" 3 ==> Afficher les etudiants ayant une moyenne generale superieure à un certain seuil.\n") ;
+            printf (" 3 ==> Afficher les etudiants ayant une moyenne generale superieure a un certain seuil.\n") ;
             printf (" 4 ==> Afficher les 3 etudiants ayant les meilleures notes.\n") ;
-            printf (" 5 ==> Afficher le nombre d'etudiants ayant réussi dans chaque departement. \n") ;
+            printf (" 5 ==> Afficher le nombre d'etudiants ayant reussi dans chaque departement. \n") ;
             printf (" 6 ==> Afficher la moyenne generale de chaque departement et de l'universite entiere. \n") ;
             scanf (" %d",&n);
             char Rechercher_depart ;
@@ -432,7 +450,7 @@ int main ()
                         }
 
                         printf("##############################################################\n");
-                        printf("#                        L'etudiant %d                        #\n", i + 1);
+                        printf("#                        L'etudiant                         #\n");
                         printf("##############################################################\n");
                         printf("#   ==> Numero unique :           #%15d            #\n", gestion[i].Numero_unique);
                         printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
@@ -453,7 +471,7 @@ int main ()
                 for(i=count-1; i>count-4; i--)
                 {
                     printf("##############################################################\n");
-                    printf("#                        L'etudiant %d                        #\n", i + 1);
+                    printf("#                        L'etudiant                          #\n");
                     printf("##############################################################\n");
                     printf("#   ==> Numero unique :           #%15d            #\n", gestion[i].Numero_unique);
                     printf("#   ==> Le nom                    #%15s            #\n", gestion[i].Nom);
@@ -465,6 +483,11 @@ int main ()
                 }
                 break;
             case 5 :
+                NEVP = 0;
+                NEVC= 0;
+                NEVM = 0;
+                NEVG = 0;
+
                 for (i = 0; i < count; i++)
                 {
                     if (strcmp(gestion[i].Departement,"PHYSIQUE" )==0)
